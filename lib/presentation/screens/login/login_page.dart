@@ -7,7 +7,7 @@ import 'package:money_wise/core/mutable_object.dart';
 import 'package:money_wise/presentation/router/app_router.dart';
 import 'package:money_wise/presentation/screens/login/widgets/pin_input.dart';
 import 'package:money_wise/presentation/widgets/button.dart';
-import 'package:money_wise/presentation/widgets/snackbar.dart';
+import 'package:money_wise/presentation/widgets/toast.dart';
 import 'package:money_wise/presentation/widgets/space.dart';
 import 'package:money_wise/presentation/widgets/text.dart';
 
@@ -26,9 +26,7 @@ class LoginPage extends StatelessWidget {
           return;
         }
         if (state.failureOption.isSome()) {
-          showFailedSnackbar(
-              context: context,
-              message: state.failureOption.getOrCrash().message);
+          showFailedToast(context, state.failureOption.getOrCrash().message);
           return;
         }
         if (state.userOption.isSome()) {
@@ -46,39 +44,64 @@ class LoginPage extends StatelessWidget {
                 const VGap(gap: 20),
                 Image.asset(
                   "assets/images/logo/logo.png",
-                  width: 100,
+                  height: 200,
                 ),
-                const VGap(gap: 50),
-                const CircleAvatar(
-                    radius: 60,
-                    backgroundImage: AssetImage("assets/images/user/user.png")),
                 const VGap(gap: 20),
-                TextLarge(
-                  "John Doe",
-                  color: theme.primaryColorDark,
-                  bold: true,
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        theme.primaryColorDark,
+                        theme.primaryColor,
+                      ],
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      const Material(
+                        shape: CircleBorder(
+                            side: BorderSide(color: Colors.white, width: 1)),
+                        child: CircleAvatar(
+                            radius: 40,
+                            backgroundImage:
+                                AssetImage("assets/images/user/user.png")),
+                      ),
+                      const VGap(gap: 20),
+                      TextLarge(
+                        "John Doe",
+                        color: theme.primaryColorLight,
+                        bold: true,
+                      ),
+                      const VGap(gap: 40),
+                      const TextRegular(
+                        "Enter your PIN",
+                        thin: true,
+                        color: Colors.white,
+                      ),
+                      const VGap(gap: 20),
+                      PinInput(onPinChange: (pin) => _mPin.value = pin),
+                      const VGap(gap: 40),
+                      BlocBuilder<AuthCubit, AuthState>(
+                        builder: (context, state) {
+                          if (state.isLoading) {
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          }
+                          return GlassButton(
+                              text: "Login",
+                              onPressed: () =>
+                                  context.read<AuthCubit>().logIn(_mPin.value));
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-                const VGap(gap: 40),
-                TextRegular(
-                  "Enter your PIN",
-                  thin: true,
-                  color: theme.primaryColorDark,
-                ),
-                const VGap(gap: 40),
-                PinInput(onPinChange: (pin) => _mPin.value = pin),
-                const VGap(gap: 40),
-                BlocBuilder<AuthCubit, AuthState>(
-                  builder: (context, state) {
-                    if (state.isLoading) {
-                      return const Center(child: CircularProgressIndicator());
-                    }
-                    return GradientButton(
-                        text: "Login",
-                        onPressed: () =>
-                            context.read<AuthCubit>().logIn(_mPin.value));
-                  },
-                ),
-                const VGap(gap: 40),
+                const VGap(gap: 20),
               ],
             ),
           ),

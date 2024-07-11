@@ -44,9 +44,8 @@ class _PinInputState extends State<PinInput> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: List.generate(4, (index) {
         return Container(
           width: 50,
@@ -54,14 +53,12 @@ class _PinInputState extends State<PinInput> {
           decoration: ShapeDecoration(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),
-              side: BorderSide(
-                color: theme.primaryColorDark,
-                width: 2,
+              side: const BorderSide(
+                color: Colors.white,
               ),
             ),
-            color: Colors.white,
+            color: Colors.white.withOpacity(0.4),
           ),
-          margin: const EdgeInsets.symmetric(horizontal: 14),
           child: TextField(
             controller: _controllers[index],
             focusNode: _focusNodes[index],
@@ -69,7 +66,7 @@ class _PinInputState extends State<PinInput> {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 18,
-              color: theme.primaryColorDark,
+              color: Colors.white,
               fontFamily:
                   GoogleFonts.poppins(fontWeight: FontWeight.bold).fontFamily,
             ),

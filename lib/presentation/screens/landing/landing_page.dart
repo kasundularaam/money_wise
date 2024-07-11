@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:money_wise/application/auth/auth_cubit.dart';
 import 'package:money_wise/core/extensions/dartz_x.dart';
 import 'package:money_wise/presentation/router/app_router.dart';
-import 'package:money_wise/presentation/widgets/snackbar.dart';
+import 'package:money_wise/presentation/widgets/toast.dart';
 
 @RoutePage()
 class LandingPage extends StatelessWidget {
@@ -19,7 +19,7 @@ class LandingPage extends StatelessWidget {
         }
         if (state.failureOption.isSome()) {
           final message = state.failureOption.getOrCrash().message;
-          showFailedSnackbar(context: context, message: message);
+          showFailedToast(context, message);
           return;
         }
         if (state.userOption.isSome()) {

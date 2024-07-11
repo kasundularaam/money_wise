@@ -10,7 +10,7 @@ class UserRepo implements IUserRepo {
   final Users _users;
   UserRepo(this._users);
 
-  static const _pin = "5832";
+  static const _pin = "1234";
 
   @override
   Future<Either<Failure, List<User>>> getFavorites() async {
