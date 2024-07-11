@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:money_wise/presentation/widgets/space.dart';
 import 'package:money_wise/presentation/widgets/text.dart';
 
 class GlassButton extends StatelessWidget {
@@ -19,11 +18,10 @@ class GlassButton extends StatelessWidget {
         onTap: onPressed,
         customBorder: const StadiumBorder(), // Match the Material's border
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const HGap(gap: 100),
               Expanded(
                 child: TextMedium(
                   text,
@@ -32,19 +30,21 @@ class GlassButton extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              const HGap(gap: 60),
               Container(
                 decoration: ShapeDecoration(
-                  shape: const CircleBorder(),
-                  color: Colors.white.withOpacity(0.3),
+                  shape: const CircleBorder(
+                    side: BorderSide(
+                      color: Colors.white,
+                    ),
+                  ),
+                  color: Colors.white.withOpacity(0.2),
                 ),
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(4),
                 child: const Icon(
                   Icons.arrow_forward_rounded,
                   color: Colors.white,
                 ),
               ),
-              const HGap(gap: 12),
             ],
           ),
         ),

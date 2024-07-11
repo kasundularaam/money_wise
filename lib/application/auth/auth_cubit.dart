@@ -17,11 +17,15 @@ class AuthCubit extends Cubit<AuthState> {
   final IUserRepo _userRepo;
   AuthCubit(
     this._userRepo,
-  ) : super(const AuthState(
-            isLoading: false,
-            isAuthenticated: false,
-            userOption: None(),
-            failureOption: None()));
+  ) : super(
+          const AuthState(
+              isLoading: false,
+              isAuthenticated: false,
+              userOption: None(),
+              failureOption: None(),
+              greeting: "Good Morning!",
+              totalBalance: "Rs.210,999.05"),
+        );
 
   Future<void> checkAuthStatus() async {
     emit(state.copyWith(

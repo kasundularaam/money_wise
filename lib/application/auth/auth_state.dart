@@ -7,5 +7,7 @@ abstract class AuthState with _$AuthState {
     required bool isAuthenticated,
     required Option<User> userOption,
     required Option<Failure> failureOption,
+    required String greeting,
+    required String totalBalance,
   }) = _AuthState;
 }

@@ -20,6 +20,8 @@ mixin _$AuthState {
   bool get isAuthenticated => throw _privateConstructorUsedError;
   Option<User> get userOption => throw _privateConstructorUsedError;
   Option<Failure> get failureOption => throw _privateConstructorUsedError;
+  String get greeting => throw _privateConstructorUsedError;
+  String get totalBalance => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthStateCopyWith<AuthState> get copyWith =>
@@ -35,7 +37,9 @@ abstract class $AuthStateCopyWith<$Res> {
       {bool isLoading,
       bool isAuthenticated,
       Option<User> userOption,
-      Option<Failure> failureOption});
+      Option<Failure> failureOption,
+      String greeting,
+      String totalBalance});
 }
 
 /// @nodoc
@@ -55,6 +59,8 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
     Object? isAuthenticated = null,
     Object? userOption = null,
     Object? failureOption = null,
+    Object? greeting = null,
+    Object? totalBalance = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -73,6 +79,14 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.failureOption
           : failureOption // ignore: cast_nullable_to_non_nullable
               as Option<Failure>,
+      greeting: null == greeting
+          ? _value.greeting
+          : greeting // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalBalance: null == totalBalance
+          ? _value.totalBalance
+          : totalBalance // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -89,7 +103,9 @@ abstract class _$$AuthStateImplCopyWith<$Res>
       {bool isLoading,
       bool isAuthenticated,
       Option<User> userOption,
-      Option<Failure> failureOption});
+      Option<Failure> failureOption,
+      String greeting,
+      String totalBalance});
 }
 
 /// @nodoc
@@ -107,6 +123,8 @@ class __$$AuthStateImplCopyWithImpl<$Res>
     Object? isAuthenticated = null,
     Object? userOption = null,
     Object? failureOption = null,
+    Object? greeting = null,
+    Object? totalBalance = null,
   }) {
     return _then(_$AuthStateImpl(
       isLoading: null == isLoading
@@ -125,6 +143,14 @@ class __$$AuthStateImplCopyWithImpl<$Res>
           ? _value.failureOption
           : failureOption // ignore: cast_nullable_to_non_nullable
               as Option<Failure>,
+      greeting: null == greeting
+          ? _value.greeting
+          : greeting // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalBalance: null == totalBalance
+          ? _value.totalBalance
+          : totalBalance // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -136,7 +162,9 @@ class _$AuthStateImpl implements _AuthState {
       {required this.isLoading,
       required this.isAuthenticated,
       required this.userOption,
-      required this.failureOption});
+      required this.failureOption,
+      required this.greeting,
+      required this.totalBalance});
 
   @override
   final bool isLoading;
@@ -146,10 +174,14 @@ class _$AuthStateImpl implements _AuthState {
   final Option<User> userOption;
   @override
   final Option<Failure> failureOption;
+  @override
+  final String greeting;
+  @override
+  final String totalBalance;
 
   @override
   String toString() {
-    return 'AuthState(isLoading: $isLoading, isAuthenticated: $isAuthenticated, userOption: $userOption, failureOption: $failureOption)';
+    return 'AuthState(isLoading: $isLoading, isAuthenticated: $isAuthenticated, userOption: $userOption, failureOption: $failureOption, greeting: $greeting, totalBalance: $totalBalance)';
   }
 
   @override
@@ -164,12 +196,16 @@ class _$AuthStateImpl implements _AuthState {
             (identical(other.userOption, userOption) ||
                 other.userOption == userOption) &&
             (identical(other.failureOption, failureOption) ||
-                other.failureOption == failureOption));
+                other.failureOption == failureOption) &&
+            (identical(other.greeting, greeting) ||
+                other.greeting == greeting) &&
+            (identical(other.totalBalance, totalBalance) ||
+                other.totalBalance == totalBalance));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, isLoading, isAuthenticated, userOption, failureOption);
+  int get hashCode => Object.hash(runtimeType, isLoading, isAuthenticated,
+      userOption, failureOption, greeting, totalBalance);
 
   @JsonKey(ignore: true)
   @override
@@ -183,7 +219,9 @@ abstract class _AuthState implements AuthState {
       {required final bool isLoading,
       required final bool isAuthenticated,
       required final Option<User> userOption,
-      required final Option<Failure> failureOption}) = _$AuthStateImpl;
+      required final Option<Failure> failureOption,
+      required final String greeting,
+      required final String totalBalance}) = _$AuthStateImpl;
 
   @override
   bool get isLoading;
@@ -193,6 +231,10 @@ abstract class _AuthState implements AuthState {
   Option<User> get userOption;
   @override
   Option<Failure> get failureOption;
+  @override
+  String get greeting;
+  @override
+  String get totalBalance;
   @override
   @JsonKey(ignore: true)
   _$$AuthStateImplCopyWith<_$AuthStateImpl> get copyWith =>

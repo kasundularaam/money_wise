@@ -15,6 +15,12 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    GetSupportRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const GetSupportPage(),
+      );
+    },
     HomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -35,6 +41,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: LoginPage(key: args.key),
       );
     },
+    PayBillsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const PayBillsPage(),
+      );
+    },
     SendMoneyRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -48,6 +60,20 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
   };
+}
+
+/// generated route for
+/// [GetSupportPage]
+class GetSupportRoute extends PageRouteInfo<void> {
+  const GetSupportRoute({List<PageRouteInfo>? children})
+      : super(
+          GetSupportRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'GetSupportRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -104,6 +130,20 @@ class LoginRouteArgs {
   String toString() {
     return 'LoginRouteArgs{key: $key}';
   }
+}
+
+/// generated route for
+/// [PayBillsPage]
+class PayBillsRoute extends PageRouteInfo<void> {
+  const PayBillsRoute({List<PageRouteInfo>? children})
+      : super(
+          PayBillsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'PayBillsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
