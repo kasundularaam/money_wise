@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
                   child: SafeArea(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 40),
+                          horizontal: 20, vertical: 20),
                       child: Column(
                         children: [
                           Row(
@@ -55,7 +55,7 @@ class HomePage extends StatelessWidget {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  TextLarge(
+                                  TextMedium(
                                     state.greeting,
                                     color: theme.primaryColorLight,
                                     bold: true,
@@ -75,14 +75,14 @@ class HomePage extends StatelessWidget {
                                   ),
                                 ),
                                 child: CircleAvatar(
-                                  radius: 30,
+                                  radius: 26,
                                   backgroundImage: AssetImage(user.imageUrl),
                                 ),
                               )
                             ],
                           ),
                           const VGap(gap: 20),
-                          TextExLarge(
+                          TextLarge(
                             state.totalBalance,
                             color: theme.primaryColorLight,
                             bold: true,
@@ -92,9 +92,9 @@ class HomePage extends StatelessWidget {
                             color: Colors.white,
                             thin: true,
                           ),
-                          const VGap(gap: 20),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 30),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 20),
                             child: GlassButton(
                                 text: "See all transactions",
                                 onPressed: () => context.router

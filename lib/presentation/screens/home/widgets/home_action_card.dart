@@ -47,7 +47,8 @@ class HomeActionCard extends StatelessWidget {
               child: Image.asset(
                 image,
                 width: width - width / 4,
-                fit: BoxFit.fitWidth,
+                height: height,
+                fit: BoxFit.cover,
               ),
             ),
             Container(
