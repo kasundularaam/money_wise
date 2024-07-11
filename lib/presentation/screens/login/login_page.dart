@@ -139,10 +139,13 @@ class LoginForm extends StatelessWidget {
                   return state.maybeWhen(
                       loading: () =>
                           const Center(child: CircularProgressIndicator()),
-                      orElse: () => GlassButton(
-                          text: "Login",
-                          onPressed: () =>
-                              context.read<LoginCubit>().logIn(pin)));
+                      orElse: () => Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: GlassButton(
+                                text: "Login",
+                                onPressed: () =>
+                                    context.read<LoginCubit>().logIn(pin)),
+                          ));
                 },
               ),
             ],
