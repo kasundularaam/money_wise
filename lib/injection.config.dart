@@ -11,6 +11,7 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:money_wise/application/auth/auth_cubit.dart' as _i13;
+import 'package:money_wise/application/cubit/login_cubit.dart' as _i15;
 import 'package:money_wise/application/load_brands/load_brands_cubit.dart'
     as _i7;
 import 'package:money_wise/application/load_favorites/load_favorites_cubit.dart'
@@ -26,7 +27,7 @@ import 'package:money_wise/infrastructure/repo/brand_repo.dart' as _i6;
 import 'package:money_wise/infrastructure/repo/transaction_repo.dart' as _i9;
 import 'package:money_wise/infrastructure/repo/user_repo.dart' as _i11;
 import 'package:money_wise/infrastructure/services/core/injectable_modules.dart'
-    as _i15;
+    as _i16;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -55,8 +56,9 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i13.AuthCubit>(() => _i13.AuthCubit(gh<_i10.IUserRepo>()));
     gh.factory<_i14.LoadFavoritesCubit>(
         () => _i14.LoadFavoritesCubit(gh<_i10.IUserRepo>()));
+    gh.factory<_i15.LoginCubit>(() => _i15.LoginCubit(gh<_i10.IUserRepo>()));
     return this;
   }
 }
 
-class _$InjectableModules extends _i15.InjectableModules {}
+class _$InjectableModules extends _i16.InjectableModules {}

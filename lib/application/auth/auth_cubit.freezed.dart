@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AuthState {
   bool get isLoading => throw _privateConstructorUsedError;
+  bool get isAuthenticated => throw _privateConstructorUsedError;
   Option<User> get userOption => throw _privateConstructorUsedError;
   Option<Failure> get failureOption => throw _privateConstructorUsedError;
 
@@ -31,7 +32,10 @@ abstract class $AuthStateCopyWith<$Res> {
       _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
   $Res call(
-      {bool isLoading, Option<User> userOption, Option<Failure> failureOption});
+      {bool isLoading,
+      bool isAuthenticated,
+      Option<User> userOption,
+      Option<Failure> failureOption});
 }
 
 /// @nodoc
@@ -48,6 +52,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? isAuthenticated = null,
     Object? userOption = null,
     Object? failureOption = null,
   }) {
@@ -55,6 +60,10 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isAuthenticated: null == isAuthenticated
+          ? _value.isAuthenticated
+          : isAuthenticated // ignore: cast_nullable_to_non_nullable
               as bool,
       userOption: null == userOption
           ? _value.userOption
@@ -77,7 +86,10 @@ abstract class _$$AuthStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool isLoading, Option<User> userOption, Option<Failure> failureOption});
+      {bool isLoading,
+      bool isAuthenticated,
+      Option<User> userOption,
+      Option<Failure> failureOption});
 }
 
 /// @nodoc
@@ -92,6 +104,7 @@ class __$$AuthStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? isAuthenticated = null,
     Object? userOption = null,
     Object? failureOption = null,
   }) {
@@ -99,6 +112,10 @@ class __$$AuthStateImplCopyWithImpl<$Res>
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isAuthenticated: null == isAuthenticated
+          ? _value.isAuthenticated
+          : isAuthenticated // ignore: cast_nullable_to_non_nullable
               as bool,
       userOption: null == userOption
           ? _value.userOption
@@ -117,11 +134,14 @@ class __$$AuthStateImplCopyWithImpl<$Res>
 class _$AuthStateImpl implements _AuthState {
   const _$AuthStateImpl(
       {required this.isLoading,
+      required this.isAuthenticated,
       required this.userOption,
       required this.failureOption});
 
   @override
   final bool isLoading;
+  @override
+  final bool isAuthenticated;
   @override
   final Option<User> userOption;
   @override
@@ -129,7 +149,7 @@ class _$AuthStateImpl implements _AuthState {
 
   @override
   String toString() {
-    return 'AuthState(isLoading: $isLoading, userOption: $userOption, failureOption: $failureOption)';
+    return 'AuthState(isLoading: $isLoading, isAuthenticated: $isAuthenticated, userOption: $userOption, failureOption: $failureOption)';
   }
 
   @override
@@ -139,6 +159,8 @@ class _$AuthStateImpl implements _AuthState {
             other is _$AuthStateImpl &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            (identical(other.isAuthenticated, isAuthenticated) ||
+                other.isAuthenticated == isAuthenticated) &&
             (identical(other.userOption, userOption) ||
                 other.userOption == userOption) &&
             (identical(other.failureOption, failureOption) ||
@@ -146,8 +168,8 @@ class _$AuthStateImpl implements _AuthState {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, isLoading, userOption, failureOption);
+  int get hashCode => Object.hash(
+      runtimeType, isLoading, isAuthenticated, userOption, failureOption);
 
   @JsonKey(ignore: true)
   @override
@@ -159,11 +181,14 @@ class _$AuthStateImpl implements _AuthState {
 abstract class _AuthState implements AuthState {
   const factory _AuthState(
       {required final bool isLoading,
+      required final bool isAuthenticated,
       required final Option<User> userOption,
       required final Option<Failure> failureOption}) = _$AuthStateImpl;
 
   @override
   bool get isLoading;
+  @override
+  bool get isAuthenticated;
   @override
   Option<User> get userOption;
   @override

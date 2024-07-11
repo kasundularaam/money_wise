@@ -10,7 +10,8 @@ class UserRepo implements IUserRepo {
   final Users _users;
   UserRepo(this._users);
 
-  static const _pin = "1234";
+  @override
+  User get currentUser => _users.currentUser;
 
   @override
   Future<Either<Failure, List<User>>> getFavorites() async {
@@ -19,11 +20,13 @@ class UserRepo implements IUserRepo {
   }
 
   @override
-  Future<Either<Failure, User>> logIn(String pin) async {
-    await Future.delayed(const Duration(seconds: 2));
-    if (pin != _pin) {
-      return left(const Failure("Invalid Pin. Please try again."));
-    }
-    return right(_users.currentUser);
+  Future<Either<Failure, Unit>> logIn(String pin) => _users.login(pin);
+
+  @override
+  Stream<bool> get watchIsAuthenticated => _users.watchIsAuthenticated;
+
+  @override
+  void dispose() {
+    _users.dispose();
   }
 }

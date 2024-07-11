@@ -22,7 +22,7 @@ class LandingPage extends StatelessWidget {
           showFailedToast(context, message);
           return;
         }
-        if (state.userOption.isSome()) {
+        if (state.isAuthenticated) {
           context.router.replaceAll([const HomeRoute()]);
           return;
         }
