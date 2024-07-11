@@ -1,0 +1,8 @@
+import 'package:dartz/dartz.dart';
+import 'package:money_wise/domain/failure/failure.dart';
+import 'package:money_wise/domain/user/user.dart';
+
+abstract class IUserRepo {
+  Future<Either<Failure, List<User>>> getFavorites();
+  Future<Either<Failure, User>> logIn(String pin);
+}

@@ -1,0 +1,46 @@
+name: money_wise
+description: "Money Wise: Banking Made Effortless."
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+
+dependencies:
+  auto_route: ^8.2.0
+  cupertino_icons: ^1.0.6
+  dartz: ^0.10.1
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.6
+  flutter_hooks: ^0.20.5
+  freezed_annotation: ^2.4.3
+  get_it: ^7.7.0
+  google_fonts: ^6.2.1
+  injectable: ^2.4.2
+  intl: ^0.19.0
+  json_annotation: ^4.9.0
+  uuid: ^4.4.0
+
+dev_dependencies:
+  auto_route_generator: ^8.0.0
+  build_runner: ^2.4.11
+
+  flutter_lints: ^3.0.0
+  flutter_test:
+    sdk: flutter
+  freezed: ^2.5.2
+  injectable_generator: ^2.6.1
+  json_serializable: ^6.8.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/backgrounds/
+    - assets/images/brands/
+    - assets/images/favorites/
+    - assets/images/logo/
+    - assets/images/user/
