@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:intl/intl.dart';
+import 'package:money_wise/domain/day_transactions/day_transactions.dart';
 import 'package:money_wise/domain/failure/failure.dart';
 import 'package:money_wise/domain/transaction/i_transaction_repo.dart';
 import 'package:money_wise/domain/transaction/transaction.dart';
@@ -64,5 +66,40 @@ class TransactionRepo implements ITransactionRepo {
         brand: const None(),
         dateTime: dateTime,
         amount: (Random().nextInt(100000) + 1000).toString());
+  }
+
+  @override
+  Future<Either<Failure, List<DayTransactions>>> getDayTransactions() async {
+    await Future.delayed(const Duration(seconds: 2));
+    final transactions =
+        List<Transaction>.generate(50, (index) => _generateTransaction());
+    final groupedTransactions = _convertToDayTransactions(transactions);
+    return groupedTransactions;
+  }
+
+  Either<Failure, List<DayTransactions>> _convertToDayTransactions(
+      List<Transaction> transactions) {
+    try {
+      Map<String, List<Transaction>> groupedTransactions = {};
+
+      for (var transaction in transactions) {
+        String dateKey = DateFormat('yyyy-MM-dd').format(transaction.dateTime);
+        if (!groupedTransactions.containsKey(dateKey)) {
+          groupedTransactions[dateKey] = [];
+        }
+        groupedTransactions[dateKey]!.add(transaction);
+      }
+
+      List<DayTransactions> dayTransactionsList = [];
+      groupedTransactions.forEach((date, transactions) {
+        DateTime parsedDate = DateTime.parse(date);
+        dayTransactionsList
+            .add(DayTransactions(date: parsedDate, transactions: transactions));
+      });
+
+      return right(dayTransactionsList);
+    } catch (e) {
+      return left(const Failure("Error converting transactions"));
+    }
   }
 }

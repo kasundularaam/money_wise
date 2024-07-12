@@ -11,13 +11,13 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:money_wise/application/auth/auth_cubit.dart' as _i13;
-import 'package:money_wise/application/cubit/login_cubit.dart' as _i15;
 import 'package:money_wise/application/load_brands/load_brands_cubit.dart'
     as _i7;
 import 'package:money_wise/application/load_favorites/load_favorites_cubit.dart'
     as _i14;
 import 'package:money_wise/application/load_transactions/load_transactions_cubit.dart'
     as _i12;
+import 'package:money_wise/application/login/login_cubit.dart' as _i15;
 import 'package:money_wise/domain/brand/i_brand_rpo.dart' as _i5;
 import 'package:money_wise/domain/transaction/i_transaction_repo.dart' as _i8;
 import 'package:money_wise/domain/user/i_user_repo.dart' as _i10;

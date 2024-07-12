@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:money_wise/application/cubit/login_cubit.dart';
+import 'package:money_wise/application/login/login_cubit.dart';
 import 'package:money_wise/domain/user/user.dart';
 import 'package:money_wise/injection.dart';
 import 'package:money_wise/presentation/screens/login/widgets/pin_input.dart';
