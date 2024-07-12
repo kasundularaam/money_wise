@@ -18,22 +18,28 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$LoadTransactionsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(List<DayTransactions> dayTransactions) loaded,
+    required TResult Function(TransactionsFilter filter) loading,
+    required TResult Function(
+            TransactionsFilter filter, List<DayTransactions> dayTransactions)
+        loaded,
     required TResult Function(Failure failure) failed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(List<DayTransactions> dayTransactions)? loaded,
+    TResult? Function(TransactionsFilter filter)? loading,
+    TResult? Function(
+            TransactionsFilter filter, List<DayTransactions> dayTransactions)?
+        loaded,
     TResult? Function(Failure failure)? failed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(List<DayTransactions> dayTransactions)? loaded,
+    TResult Function(TransactionsFilter filter)? loading,
+    TResult Function(
+            TransactionsFilter filter, List<DayTransactions> dayTransactions)?
+        loaded,
     TResult Function(Failure failure)? failed,
     required TResult orElse(),
   }) =>
@@ -86,6 +92,8 @@ abstract class _$$LoadingImplCopyWith<$Res> {
   factory _$$LoadingImplCopyWith(
           _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
       __$$LoadingImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({TransactionsFilter filter});
 }
 
 /// @nodoc
@@ -95,57 +103,87 @@ class __$$LoadingImplCopyWithImpl<$Res>
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filter = null,
+  }) {
+    return _then(_$LoadingImpl(
+      null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as TransactionsFilter,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
+  const _$LoadingImpl(this.filter);
+
+  @override
+  final TransactionsFilter filter;
 
   @override
   String toString() {
-    return 'LoadTransactionsState.loading()';
+    return 'LoadTransactionsState.loading(filter: $filter)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$LoadingImpl &&
+            (identical(other.filter, filter) || other.filter == filter));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, filter);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadingImplCopyWith<_$LoadingImpl> get copyWith =>
+      __$$LoadingImplCopyWithImpl<_$LoadingImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(List<DayTransactions> dayTransactions) loaded,
+    required TResult Function(TransactionsFilter filter) loading,
+    required TResult Function(
+            TransactionsFilter filter, List<DayTransactions> dayTransactions)
+        loaded,
     required TResult Function(Failure failure) failed,
   }) {
-    return loading();
+    return loading(filter);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(List<DayTransactions> dayTransactions)? loaded,
+    TResult? Function(TransactionsFilter filter)? loading,
+    TResult? Function(
+            TransactionsFilter filter, List<DayTransactions> dayTransactions)?
+        loaded,
     TResult? Function(Failure failure)? failed,
   }) {
-    return loading?.call();
+    return loading?.call(filter);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(List<DayTransactions> dayTransactions)? loaded,
+    TResult Function(TransactionsFilter filter)? loading,
+    TResult Function(
+            TransactionsFilter filter, List<DayTransactions> dayTransactions)?
+        loaded,
     TResult Function(Failure failure)? failed,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading();
+      return loading(filter);
     }
     return orElse();
   }
@@ -186,7 +224,12 @@ class _$LoadingImpl implements _Loading {
 }
 
 abstract class _Loading implements LoadTransactionsState {
-  const factory _Loading() = _$LoadingImpl;
+  const factory _Loading(final TransactionsFilter filter) = _$LoadingImpl;
+
+  TransactionsFilter get filter;
+  @JsonKey(ignore: true)
+  _$$LoadingImplCopyWith<_$LoadingImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -195,7 +238,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<DayTransactions> dayTransactions});
+  $Res call({TransactionsFilter filter, List<DayTransactions> dayTransactions});
 }
 
 /// @nodoc
@@ -209,9 +252,14 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? filter = null,
     Object? dayTransactions = null,
   }) {
     return _then(_$LoadedImpl(
+      null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as TransactionsFilter,
       null == dayTransactions
           ? _value._dayTransactions
           : dayTransactions // ignore: cast_nullable_to_non_nullable
@@ -223,9 +271,11 @@ class __$$LoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(final List<DayTransactions> dayTransactions)
+  const _$LoadedImpl(this.filter, final List<DayTransactions> dayTransactions)
       : _dayTransactions = dayTransactions;
 
+  @override
+  final TransactionsFilter filter;
   final List<DayTransactions> _dayTransactions;
   @override
   List<DayTransactions> get dayTransactions {
@@ -236,7 +286,7 @@ class _$LoadedImpl implements _Loaded {
 
   @override
   String toString() {
-    return 'LoadTransactionsState.loaded(dayTransactions: $dayTransactions)';
+    return 'LoadTransactionsState.loaded(filter: $filter, dayTransactions: $dayTransactions)';
   }
 
   @override
@@ -244,13 +294,14 @@ class _$LoadedImpl implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
+            (identical(other.filter, filter) || other.filter == filter) &&
             const DeepCollectionEquality()
                 .equals(other._dayTransactions, _dayTransactions));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_dayTransactions));
+  int get hashCode => Object.hash(runtimeType, filter,
+      const DeepCollectionEquality().hash(_dayTransactions));
 
   @JsonKey(ignore: true)
   @override
@@ -261,33 +312,39 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(List<DayTransactions> dayTransactions) loaded,
+    required TResult Function(TransactionsFilter filter) loading,
+    required TResult Function(
+            TransactionsFilter filter, List<DayTransactions> dayTransactions)
+        loaded,
     required TResult Function(Failure failure) failed,
   }) {
-    return loaded(dayTransactions);
+    return loaded(filter, dayTransactions);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(List<DayTransactions> dayTransactions)? loaded,
+    TResult? Function(TransactionsFilter filter)? loading,
+    TResult? Function(
+            TransactionsFilter filter, List<DayTransactions> dayTransactions)?
+        loaded,
     TResult? Function(Failure failure)? failed,
   }) {
-    return loaded?.call(dayTransactions);
+    return loaded?.call(filter, dayTransactions);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(List<DayTransactions> dayTransactions)? loaded,
+    TResult Function(TransactionsFilter filter)? loading,
+    TResult Function(
+            TransactionsFilter filter, List<DayTransactions> dayTransactions)?
+        loaded,
     TResult Function(Failure failure)? failed,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(dayTransactions);
+      return loaded(filter, dayTransactions);
     }
     return orElse();
   }
@@ -328,9 +385,10 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements LoadTransactionsState {
-  const factory _Loaded(final List<DayTransactions> dayTransactions) =
-      _$LoadedImpl;
+  const factory _Loaded(final TransactionsFilter filter,
+      final List<DayTransactions> dayTransactions) = _$LoadedImpl;
 
+  TransactionsFilter get filter;
   List<DayTransactions> get dayTransactions;
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
@@ -411,8 +469,10 @@ class _$FailedImpl implements _Failed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(List<DayTransactions> dayTransactions) loaded,
+    required TResult Function(TransactionsFilter filter) loading,
+    required TResult Function(
+            TransactionsFilter filter, List<DayTransactions> dayTransactions)
+        loaded,
     required TResult Function(Failure failure) failed,
   }) {
     return failed(failure);
@@ -421,8 +481,10 @@ class _$FailedImpl implements _Failed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(List<DayTransactions> dayTransactions)? loaded,
+    TResult? Function(TransactionsFilter filter)? loading,
+    TResult? Function(
+            TransactionsFilter filter, List<DayTransactions> dayTransactions)?
+        loaded,
     TResult? Function(Failure failure)? failed,
   }) {
     return failed?.call(failure);
@@ -431,8 +493,10 @@ class _$FailedImpl implements _Failed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(List<DayTransactions> dayTransactions)? loaded,
+    TResult Function(TransactionsFilter filter)? loading,
+    TResult Function(
+            TransactionsFilter filter, List<DayTransactions> dayTransactions)?
+        loaded,
     TResult Function(Failure failure)? failed,
     required TResult orElse(),
   }) {

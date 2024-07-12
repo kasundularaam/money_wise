@@ -97,8 +97,8 @@ class HomePage extends StatelessWidget {
                                 horizontal: 30, vertical: 20),
                             child: GlassButton(
                                 text: "See all transactions",
-                                onPressed: () => context.router
-                                    .push(const TransactionsRoute())),
+                                onPressed: () =>
+                                    context.router.push(TransactionsRoute())),
                           ),
                         ],
                       ),

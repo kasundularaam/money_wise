@@ -2,6 +2,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:money_wise/application/load_transactions/transactions_filter.dart';
 import 'package:money_wise/core/extensions/dartz_x.dart';
 import 'package:money_wise/domain/day_transactions/day_transactions.dart';
 
@@ -16,16 +17,18 @@ class LoadTransactionsCubit extends Cubit<LoadTransactionsState> {
   final ITransactionRepo _transactionRepo;
   LoadTransactionsCubit(
     this._transactionRepo,
-  ) : super(const LoadTransactionsState.loading());
+  ) : super(const LoadTransactionsState.loading(TransactionsFilter.all));
 
-  Future<void> loadTransactions() async {
-    emit(const LoadTransactionsState.loading());
+  Future<void> loadTransactions(
+      {TransactionsFilter filter = TransactionsFilter.all}) async {
+    emit(LoadTransactionsState.loading(filter));
     final failureOrDayTransactions =
         await _transactionRepo.getDayTransactions();
     if (failureOrDayTransactions.isLeft()) {
       emit(LoadTransactionsState.failed(failureOrDayTransactions.getLeft()));
       return;
     }
-    emit(LoadTransactionsState.loaded(failureOrDayTransactions.getOrCrash()));
+    emit(LoadTransactionsState.loaded(
+        filter, failureOrDayTransactions.getOrCrash()));
   }
 }

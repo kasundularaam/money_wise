@@ -16,7 +16,7 @@ class DayTransactionsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Container(
-      margin: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
+      margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
       padding: const EdgeInsets.symmetric(vertical: 10),
       decoration: ShapeDecoration(
         shape: RoundedRectangleBorder(

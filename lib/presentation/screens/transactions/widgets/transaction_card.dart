@@ -1,4 +1,7 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'package:flutter/material.dart';
+
 import 'package:money_wise/core/extensions/dartz_x.dart';
 import 'package:money_wise/domain/transaction/transaction.dart';
 import 'package:money_wise/domain/user/user.dart';
@@ -55,7 +58,7 @@ class TransactionCard extends StatelessWidget {
     final theme = Theme.of(context);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      margin: EdgeInsets.only(left: 20, right: 20, bottom: isLast ? 10 : 20),
+      margin: EdgeInsets.only(left: 10, right: 10, bottom: isLast ? 0 : 10),
       decoration: ShapeDecoration(
         color: Colors.white.withOpacity(.4),
         shape: RoundedRectangleBorder(
@@ -77,7 +80,8 @@ class TransactionCard extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
                   margin: const EdgeInsets.symmetric(horizontal: 20),
                   decoration: ShapeDecoration(
-                    shape: const StadiumBorder(side: BorderSide(color: Colors.white)),
+                    shape: const StadiumBorder(
+                        side: BorderSide(color: Colors.white)),
                     color: Colors.white.withOpacity(.4),
                   ),
                   child: Row(
@@ -144,7 +148,8 @@ class TransactionCard extends StatelessWidget {
               Container(
                 decoration: ShapeDecoration(
                   color: Colors.white.withOpacity(.4),
-                  shape: const StadiumBorder(side: BorderSide(color: Colors.white)),
+                  shape: const StadiumBorder(
+                      side: BorderSide(color: Colors.white)),
                 ),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -168,7 +173,8 @@ class TransactionCard extends StatelessWidget {
               Container(
                 decoration: ShapeDecoration(
                   color: Colors.white.withOpacity(.4),
-                  shape: const StadiumBorder(side: BorderSide(color: Colors.white)),
+                  shape: const StadiumBorder(
+                      side: BorderSide(color: Colors.white)),
                 ),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
