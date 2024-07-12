@@ -1,29 +1,43 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:math';
 
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
+import 'package:money_wise/application/load_transactions/transactions_filter.dart';
+import 'package:money_wise/core/extensions/dartz_x.dart';
+import 'package:uuid/uuid.dart';
+
 import 'package:money_wise/domain/day_transactions/day_transactions.dart';
 import 'package:money_wise/domain/failure/failure.dart';
 import 'package:money_wise/domain/transaction/i_transaction_repo.dart';
 import 'package:money_wise/domain/transaction/transaction.dart';
 import 'package:money_wise/infrastructure/data/brands.dart';
+import 'package:money_wise/infrastructure/data/transactions.dart';
 import 'package:money_wise/infrastructure/data/users.dart';
 import 'package:money_wise/infrastructure/services/core/utils.dart';
-import 'package:uuid/uuid.dart';
 
 @LazySingleton(as: ITransactionRepo)
 class TransactionRepo implements ITransactionRepo {
   final Users _users;
   final Brands _brands;
+  final Transactions _transactions;
 
-  TransactionRepo(this._users, this._brands);
+  TransactionRepo(
+    this._users,
+    this._brands,
+    this._transactions,
+  );
 
   @override
   Future<Either<Failure, List<Transaction>>> getTransactions() async {
-    await Future.delayed(const Duration(seconds: 2));
-    return right(
-        List<Transaction>.generate(50, (index) => _generateTransaction()));
+    if (_transactions.isEmpty) {
+      await Future.delayed(const Duration(seconds: 2));
+      final transactions =
+          List<Transaction>.generate(50, (index) => _generateTransaction());
+      _transactions.addTransaction(transactions);
+    }
+    return right(_transactions.transactions);
   }
 
   Transaction _generateTransaction() {
@@ -69,12 +83,41 @@ class TransactionRepo implements ITransactionRepo {
   }
 
   @override
-  Future<Either<Failure, List<DayTransactions>>> getDayTransactions() async {
-    await Future.delayed(const Duration(seconds: 2));
-    final transactions =
-        List<Transaction>.generate(50, (index) => _generateTransaction());
-    final groupedTransactions = _convertToDayTransactions(transactions);
-    return groupedTransactions;
+  Future<Either<Failure, List<DayTransactions>>> getDayTransactions(
+      {TransactionsFilter filter = TransactionsFilter.all}) async {
+    final failureOrTransactions = await getTransactions();
+
+    if (failureOrTransactions.isLeft()) {
+      return left(failureOrTransactions.getLeft());
+    }
+
+    if (filter == TransactionsFilter.income) {
+      final filtered =
+          failureOrTransactions.getOrCrash().where(_isIncome).toList();
+      return _convertToDayTransactions(filtered);
+    }
+
+    if (filter == TransactionsFilter.expense) {
+      final filtered =
+          failureOrTransactions.getOrCrash().where(_isExpense).toList();
+      return _convertToDayTransactions(filtered);
+    }
+
+    return _convertToDayTransactions(failureOrTransactions.getOrCrash());
+  }
+
+  bool _isIncome(Transaction transaction) {
+    if (transaction.brand.isSome()) {
+      return false;
+    }
+    return transaction.sender != _users.currentUser;
+  }
+
+  bool _isExpense(Transaction transaction) {
+    if (transaction.brand.isSome()) {
+      return true;
+    }
+    return transaction.sender == _users.currentUser;
   }
 
   Either<Failure, List<DayTransactions>> _convertToDayTransactions(

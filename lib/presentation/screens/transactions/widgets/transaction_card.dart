@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:money_wise/core/extensions/dartz_x.dart';
 import 'package:money_wise/domain/transaction/transaction.dart';
 import 'package:money_wise/domain/user/user.dart';
+import 'package:money_wise/presentation/widgets/profile_avatar.dart';
 import 'package:money_wise/presentation/widgets/space.dart';
 import 'package:money_wise/presentation/widgets/text.dart';
 
@@ -70,10 +71,7 @@ class TransactionCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              CircleAvatar(
-                radius: 30,
-                backgroundImage: AssetImage(leftImage),
-              ),
+              ProfileAvatar(imageUrl: leftImage, radius: 30),
               Expanded(
                 child: Container(
                   padding:
@@ -123,10 +121,7 @@ class TransactionCard extends StatelessWidget {
                   ),
                 ),
               ),
-              CircleAvatar(
-                radius: 30,
-                backgroundImage: AssetImage(rightImage),
-              ),
+              ProfileAvatar(imageUrl: rightImage, radius: 30),
             ],
           ),
           const VGap(gap: 10),

@@ -6,6 +6,7 @@ import 'package:money_wise/core/extensions/dartz_x.dart';
 import 'package:money_wise/presentation/router/app_router.dart';
 import 'package:money_wise/presentation/screens/home/widgets/home_action_card.dart';
 import 'package:money_wise/presentation/widgets/button.dart';
+import 'package:money_wise/presentation/widgets/profile_avatar.dart';
 import 'package:money_wise/presentation/widgets/space.dart';
 import 'package:money_wise/presentation/widgets/text.dart';
 
@@ -68,17 +69,7 @@ class HomePage extends StatelessWidget {
                                 ],
                               ),
                               const Spacer(),
-                              Material(
-                                shape: const CircleBorder(
-                                  side: BorderSide(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                child: CircleAvatar(
-                                  radius: 26,
-                                  backgroundImage: AssetImage(user.imageUrl),
-                                ),
-                              )
+                              ProfileAvatar(imageUrl: user.imageUrl, radius: 26)
                             ],
                           ),
                           const VGap(gap: 20),

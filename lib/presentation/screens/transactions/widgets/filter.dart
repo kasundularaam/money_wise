@@ -30,7 +30,7 @@ class _ActiveFilter extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
       decoration: ShapeDecoration(
           shape: const StadiumBorder(
               side: BorderSide(color: Colors.white, width: 2)),

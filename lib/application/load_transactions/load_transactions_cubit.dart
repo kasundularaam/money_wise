@@ -23,7 +23,7 @@ class LoadTransactionsCubit extends Cubit<LoadTransactionsState> {
       {TransactionsFilter filter = TransactionsFilter.all}) async {
     emit(LoadTransactionsState.loading(filter));
     final failureOrDayTransactions =
-        await _transactionRepo.getDayTransactions();
+        await _transactionRepo.getDayTransactions(filter: filter);
     if (failureOrDayTransactions.isLeft()) {
       emit(LoadTransactionsState.failed(failureOrDayTransactions.getLeft()));
       return;

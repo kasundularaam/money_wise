@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:money_wise/infrastructure/data/brands.dart';
+import 'package:money_wise/infrastructure/data/transactions.dart';
 import 'package:money_wise/infrastructure/data/users.dart';
 
 @module
@@ -9,4 +10,7 @@ abstract class InjectableModules {
 
   @lazySingleton
   Brands get brands => Brands.init();
+
+  @lazySingleton
+  Transactions get transactions => Transactions();
 }

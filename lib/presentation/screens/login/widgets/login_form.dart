@@ -5,6 +5,7 @@ import 'package:money_wise/domain/user/user.dart';
 import 'package:money_wise/injection.dart';
 import 'package:money_wise/presentation/screens/login/widgets/pin_input.dart';
 import 'package:money_wise/presentation/widgets/button.dart';
+import 'package:money_wise/presentation/widgets/profile_avatar.dart';
 import 'package:money_wise/presentation/widgets/space.dart';
 import 'package:money_wise/presentation/widgets/text.dart';
 import 'package:money_wise/presentation/widgets/toast.dart';
@@ -50,8 +51,10 @@ class LoginForm extends StatelessWidget {
               Material(
                 shape: const CircleBorder(
                     side: BorderSide(color: Colors.white, width: 1)),
-                child: CircleAvatar(
-                    radius: 40, backgroundImage: AssetImage(user.imageUrl)),
+                child: ProfileAvatar(
+                  imageUrl: user.imageUrl,
+                  radius: 40,
+                ),
               ),
               const VGap(gap: 10),
               TextLarge(
