@@ -44,7 +44,7 @@ class LoginPage extends StatelessWidget {
                 const VGap(gap: 20),
                 Image.asset(
                   "assets/images/logo/logo.png",
-                  height: 200,
+                  height: 120,
                 ),
                 const VGap(gap: 20),
                 BlocBuilder<AuthCubit, AuthState>(

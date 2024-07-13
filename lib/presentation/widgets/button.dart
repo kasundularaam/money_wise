@@ -11,14 +11,12 @@ class GlassButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: Colors.white.withOpacity(.4),
-      shape: const StadiumBorder(
-          side: BorderSide(
-              color: Colors.white)), // Make the material color transparent
+      shape: const StadiumBorder(side: BorderSide(color: Colors.white)),
       child: InkWell(
         onTap: onPressed,
-        customBorder: const StadiumBorder(), // Match the Material's border
+        customBorder: const StadiumBorder(),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+          padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 6),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [

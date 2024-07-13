@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:money_wise/application/auth/auth_cubit.dart';
 import 'package:money_wise/core/extensions/dartz_x.dart';
 import 'package:money_wise/presentation/router/app_router.dart';
-import 'package:money_wise/presentation/screens/home/widgets/home_action_card.dart';
+import 'package:money_wise/presentation/widgets/big_action_card.dart';
 import 'package:money_wise/presentation/widgets/button.dart';
 import 'package:money_wise/presentation/widgets/profile_avatar.dart';
 import 'package:money_wise/presentation/widgets/space.dart';
@@ -88,8 +88,8 @@ class HomePage extends StatelessWidget {
                                 horizontal: 30, vertical: 20),
                             child: GlassButton(
                                 text: "See all transactions",
-                                onPressed: () =>
-                                    context.router.push(TransactionsRoute())),
+                                onPressed: () => context.router
+                                    .push(const TransactionsRoute())),
                           ),
                         ],
                       ),
@@ -104,7 +104,7 @@ class HomePage extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Column(
                         children: [
-                          HomeActionCard(
+                          BigActionCard(
                               text: "Send\nMoney",
                               image: "assets/images/backgrounds/send-money.png",
                               height: cardHeight,
@@ -112,7 +112,7 @@ class HomePage extends StatelessWidget {
                               onPressed: () =>
                                   context.router.push(const SendMoneyRoute())),
                           const Spacer(),
-                          HomeActionCard(
+                          BigActionCard(
                               text: "Pay\nBills",
                               image: "assets/images/backgrounds/pay-bills.png",
                               height: cardHeight,
@@ -121,7 +121,7 @@ class HomePage extends StatelessWidget {
                               onPressed: () =>
                                   context.router.push(const PayBillsRoute())),
                           const Spacer(),
-                          HomeActionCard(
+                          BigActionCard(
                               text: "Get\nSupport",
                               image:
                                   "assets/images/backgrounds/get-support.png",

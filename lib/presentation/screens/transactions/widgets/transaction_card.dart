@@ -71,12 +71,12 @@ class TransactionCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              ProfileAvatar(imageUrl: leftImage, radius: 30),
+              ProfileAvatar(imageUrl: leftImage, radius: 26),
               Expanded(
                 child: Container(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                      const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
+                  margin: const EdgeInsets.symmetric(horizontal: 10),
                   decoration: ShapeDecoration(
                     shape: const StadiumBorder(
                         side: BorderSide(color: Colors.white)),
@@ -121,7 +121,7 @@ class TransactionCard extends StatelessWidget {
                   ),
                 ),
               ),
-              ProfileAvatar(imageUrl: rightImage, radius: 30),
+              ProfileAvatar(imageUrl: rightImage, radius: 26),
             ],
           ),
           const VGap(gap: 10),

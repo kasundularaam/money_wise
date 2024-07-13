@@ -32,15 +32,14 @@ class _ActiveFilter extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
       decoration: ShapeDecoration(
-          shape: const StadiumBorder(
-              side: BorderSide(color: Colors.white, width: 2)),
+          shape: const StadiumBorder(side: BorderSide(color: Colors.white)),
           gradient: LinearGradient(colors: [
             theme.primaryColorDark,
             theme.primaryColor,
           ]),
           shadows: [
             BoxShadow(
-              color: Colors.black.withOpacity(.4),
+              color: Colors.black.withOpacity(.2),
               blurRadius: 8,
               spreadRadius: 4,
               offset: const Offset(0, 8),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomeActionCard extends StatelessWidget {
+class BigActionCard extends StatelessWidget {
   final String text;
   final String image;
   final bool isLeft;
@@ -9,7 +9,7 @@ class HomeActionCard extends StatelessWidget {
   final double width;
   final Function() onPressed;
 
-  const HomeActionCard(
+  const BigActionCard(
       {super.key,
       required this.text,
       required this.image,
