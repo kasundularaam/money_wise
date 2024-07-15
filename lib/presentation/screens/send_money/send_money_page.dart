@@ -107,9 +107,12 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                                 loaded: (favorites) => ListView.builder(
                                     controller: _scrollController,
                                     itemCount: favorites.length,
-                                    itemBuilder: (context, index) =>
-                                        FavoriteCard(
-                                            favoriteUser: favorites[index])),
+                                    itemBuilder: (context, index) => Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 10, right: 10, bottom: 10),
+                                          child: FavoriteCard(
+                                              favoriteUser: favorites[index]),
+                                        )),
                                 orElse: () => const TextRegular(
                                       "Your favorites will appear here...",
                                       color: Colors.white,

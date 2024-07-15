@@ -60,9 +60,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     SendFavoriteRoute.name: (routeData) {
+      final args = routeData.argsAs<SendFavoriteRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const SendFavoritePage(),
+        child: SendFavoritePage(
+          key: args.key,
+          favoriteUser: args.favoriteUser,
+        ),
       );
     },
     SendMoneyRoute.name: (routeData) {
@@ -194,16 +198,40 @@ class ProcessBillRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [SendFavoritePage]
-class SendFavoriteRoute extends PageRouteInfo<void> {
-  const SendFavoriteRoute({List<PageRouteInfo>? children})
-      : super(
+class SendFavoriteRoute extends PageRouteInfo<SendFavoriteRouteArgs> {
+  SendFavoriteRoute({
+    Key? key,
+    required User favoriteUser,
+    List<PageRouteInfo>? children,
+  }) : super(
           SendFavoriteRoute.name,
+          args: SendFavoriteRouteArgs(
+            key: key,
+            favoriteUser: favoriteUser,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'SendFavoriteRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<SendFavoriteRouteArgs> page =
+      PageInfo<SendFavoriteRouteArgs>(name);
+}
+
+class SendFavoriteRouteArgs {
+  const SendFavoriteRouteArgs({
+    this.key,
+    required this.favoriteUser,
+  });
+
+  final Key? key;
+
+  final User favoriteUser;
+
+  @override
+  String toString() {
+    return 'SendFavoriteRouteArgs{key: $key, favoriteUser: $favoriteUser}';
+  }
 }
 
 /// generated route for

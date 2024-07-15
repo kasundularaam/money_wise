@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:money_wise/domain/user/user.dart';
 import 'package:money_wise/presentation/screens/get_support/get_support_page.dart';
 import 'package:money_wise/presentation/screens/home/home_page.dart';
 import 'package:money_wise/presentation/screens/login/login_page.dart';
