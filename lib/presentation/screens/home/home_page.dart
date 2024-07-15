@@ -1,9 +1,12 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:money_wise/application/auth/auth_cubit.dart';
 import 'package:money_wise/core/extensions/dartz_x.dart';
 import 'package:money_wise/presentation/router/app_router.dart';
+import 'package:money_wise/presentation/screens/home/widgets/profile_dialog.dart';
 import 'package:money_wise/presentation/widgets/big_action_card.dart';
 import 'package:money_wise/presentation/widgets/button.dart';
 import 'package:money_wise/presentation/widgets/profile_avatar.dart';
@@ -69,7 +72,15 @@ class HomePage extends StatelessWidget {
                                 ],
                               ),
                               const Spacer(),
-                              ProfileAvatar(imageUrl: user.imageUrl, radius: 26)
+                              InkWell(
+                                  onTap: () => showDialog(
+                                        context: context,
+                                        builder: (context) => ProfileDialog(
+                                            theme: theme, user: user),
+                                      ),
+                                  customBorder: const CircleBorder(),
+                                  child: ProfileAvatar(
+                                      imageUrl: user.imageUrl, radius: 26))
                             ],
                           ),
                           const VGap(gap: 20),

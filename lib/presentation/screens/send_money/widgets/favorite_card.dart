@@ -13,7 +13,7 @@ class FavoriteCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+      padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
       child: Material(
         color: Colors.transparent,
         child: InkWell(

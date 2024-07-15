@@ -94,8 +94,8 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                   child: Column(
                     children: [
                       const VGap(gap: 20),
-                      TextLarge("Favorites",
-                          color: theme.primaryColorLight, bold: true),
+                      TextMedium("Favorites",
+                          color: theme.primaryColorLight, thin: true),
                       const VGap(gap: 20),
                       Expanded(
                         child:
