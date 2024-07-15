@@ -41,10 +41,28 @@ abstract class _$AppRouter extends RootStackRouter {
         child: LoginPage(key: args.key),
       );
     },
+    NewBankTransferRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const NewBankTransferPage(),
+      );
+    },
     PayBillsRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const PayBillsPage(),
+      );
+    },
+    ProcessBillRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ProcessBillPage(),
+      );
+    },
+    SendFavoriteRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SendFavoritePage(),
       );
     },
     SendMoneyRoute.name: (routeData) {
@@ -133,6 +151,20 @@ class LoginRouteArgs {
 }
 
 /// generated route for
+/// [NewBankTransferPage]
+class NewBankTransferRoute extends PageRouteInfo<void> {
+  const NewBankTransferRoute({List<PageRouteInfo>? children})
+      : super(
+          NewBankTransferRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'NewBankTransferRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [PayBillsPage]
 class PayBillsRoute extends PageRouteInfo<void> {
   const PayBillsRoute({List<PageRouteInfo>? children})
@@ -142,6 +174,34 @@ class PayBillsRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'PayBillsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ProcessBillPage]
+class ProcessBillRoute extends PageRouteInfo<void> {
+  const ProcessBillRoute({List<PageRouteInfo>? children})
+      : super(
+          ProcessBillRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProcessBillRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SendFavoritePage]
+class SendFavoriteRoute extends PageRouteInfo<void> {
+  const SendFavoriteRoute({List<PageRouteInfo>? children})
+      : super(
+          SendFavoriteRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SendFavoriteRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

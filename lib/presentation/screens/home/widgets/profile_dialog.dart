@@ -22,7 +22,7 @@ class ProfileDialog extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Container(
         decoration: ShapeDecoration(
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
             colors: [
               Colors.red,
               Colors.redAccent,
@@ -32,14 +32,14 @@ class ProfileDialog extends StatelessWidget {
           ),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
-              side: BorderSide(color: Colors.white)),
+              side: const BorderSide(color: Colors.white)),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
               width: MediaQuery.of(context).size.width,
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               decoration: ShapeDecoration(
                 gradient: LinearGradient(
                   colors: [
@@ -50,7 +50,7 @@ class ProfileDialog extends StatelessWidget {
                   end: Alignment.bottomRight,
                 ),
                 shape: RoundedRectangleBorder(
-                  side: BorderSide(color: Colors.white),
+                  side: const BorderSide(color: Colors.white),
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
@@ -81,7 +81,7 @@ class ProfileDialog extends StatelessWidget {
                       color: Colors.white.withOpacity(.4),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
-                        side: BorderSide(color: Colors.white),
+                        side: const BorderSide(color: Colors.white),
                       ),
                     ),
                     child: Column(
@@ -92,19 +92,19 @@ class ProfileDialog extends StatelessWidget {
                           isFirst: true,
                           onPressed: () {},
                         ),
-                        Divider(color: Colors.white, thickness: 1, height: 0),
+                        const Divider(color: Colors.white, thickness: 1, height: 0),
                         ProfileAction(
                           text: "Report",
                           icon: Icons.report_rounded,
                           onPressed: () {},
                         ),
-                        Divider(color: Colors.white, thickness: 1, height: 0),
+                        const Divider(color: Colors.white, thickness: 1, height: 0),
                         ProfileAction(
                           text: "Rate Us",
                           icon: Icons.star_rate_rounded,
                           onPressed: () {},
                         ),
-                        Divider(color: Colors.white, thickness: 1, height: 0),
+                        const Divider(color: Colors.white, thickness: 1, height: 0),
                         ProfileAction(
                           text: "About Us",
                           icon: Icons.info_rounded,
