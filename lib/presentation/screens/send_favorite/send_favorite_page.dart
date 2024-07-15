@@ -71,7 +71,7 @@ class SendFavoritePage extends StatelessWidget {
                 ),
               ),
               const VGap(gap: 20),
-              GradientCard(
+              const GradientCard(
                   title: "Transaction details",
                   child: Column(
                     children: [],
