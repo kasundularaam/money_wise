@@ -1,26 +1,23 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:money_wise/domain/user/user.dart';
+import 'package:money_wise/presentation/widgets/amount_field_group.dart';
 import 'package:money_wise/presentation/widgets/available_balance_card.dart';
 import 'package:money_wise/presentation/widgets/favorite_card.dart';
 import 'package:money_wise/presentation/widgets/button.dart';
-import 'package:money_wise/presentation/widgets/frequent_amounts.dart';
 import 'package:money_wise/presentation/widgets/gradient_card.dart';
 import 'package:money_wise/presentation/widgets/space.dart';
 import 'package:money_wise/presentation/widgets/text.dart';
+import 'package:money_wise/presentation/widgets/text_input_field.dart';
 
 @RoutePage()
-class SendFavoritePage extends HookWidget {
+class SendFavoritePage extends StatelessWidget {
   final User favoriteUser;
 
   const SendFavoritePage({super.key, required this.favoriteUser});
 
   @override
   Widget build(BuildContext context) {
-    final amountController = useTextEditingController();
     return Scaffold(
         appBar: AppBar(
           title: const Text("Send Favorite"),
@@ -29,7 +26,7 @@ class SendFavoritePage extends HookWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             children: [
-              AvailableBalanceCard(),
+              const AvailableBalanceCard(),
               const VGap(gap: 10),
               GradientCard(
                 title: "Send money to",
@@ -47,42 +44,12 @@ class SendFavoritePage extends HookWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const VGap(gap: 20),
-                      const TextRegular("Amount",
-                          color: Colors.white, thin: true),
-                      const VGap(),
-                      TextField(
-                        controller: amountController,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily:
-                              GoogleFonts.poppins(fontWeight: FontWeight.bold)
-                                  .fontFamily,
-                        ),
-                        keyboardType: TextInputType.number,
-                        decoration: const InputDecoration(prefix: Text("Rs. ")),
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(10),
-                          FilteringTextInputFormatter.allow(
-                              RegExp(r'^\d+\.?\d{0,2}')),
-                          FilteringTextInputFormatter.deny(RegExp(r"\s")),
-                        ],
-                      ),
-                      const VGap(),
-                      FrequentAmounts(
-                          onSelected: (amount) =>
-                              amountController.text = "$amount.00"),
+                      const AmountFieldGroup(),
                       const VGap(gap: 20),
                       const TextRegular("Description",
                           color: Colors.white, thin: true),
                       const VGap(),
-                      TextField(
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily:
-                              GoogleFonts.poppins(fontWeight: FontWeight.bold)
-                                  .fontFamily,
-                        ),
-                      ),
+                      const TextInputField(),
                       const VGap(gap: 20),
                       GlassButton(text: "Send", onPressed: () {})
                     ],
