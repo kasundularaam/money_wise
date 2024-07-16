@@ -1,14 +1,13 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:money_wise/application/auth/auth_cubit.dart';
 import 'package:money_wise/domain/user/user.dart';
-import 'package:money_wise/presentation/screens/send_money/widgets/favorite_card.dart';
+import 'package:money_wise/presentation/widgets/available_balance_card.dart';
+import 'package:money_wise/presentation/widgets/favorite_card.dart';
 import 'package:money_wise/presentation/widgets/button.dart';
-import 'package:money_wise/presentation/widgets/gradient_box.dart';
+import 'package:money_wise/presentation/widgets/frequent_amounts.dart';
 import 'package:money_wise/presentation/widgets/gradient_card.dart';
 import 'package:money_wise/presentation/widgets/space.dart';
 import 'package:money_wise/presentation/widgets/text.dart';
@@ -21,7 +20,6 @@ class SendFavoritePage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final amountController = useTextEditingController();
     return Scaffold(
         appBar: AppBar(
@@ -31,34 +29,7 @@ class SendFavoritePage extends HookWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: GradientBox(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 12,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      BlocBuilder<AuthCubit, AuthState>(
-                        builder: (context, state) {
-                          return TextMedium(
-                            state.totalBalance,
-                            color: theme.primaryColorLight,
-                            bold: true,
-                          );
-                        },
-                      ),
-                      const TextRegular(
-                        "Available balance in your account",
-                        color: Colors.white,
-                        thin: true,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              AvailableBalanceCard(),
               const VGap(gap: 10),
               GradientCard(
                 title: "Send money to",
@@ -119,57 +90,5 @@ class SendFavoritePage extends HookWidget {
             ],
           ),
         ));
-  }
-}
-
-class FrequentAmounts extends StatelessWidget {
-  final Function(String) onSelected;
-
-  const FrequentAmounts({super.key, required this.onSelected});
-
-  static const _amounts = ["100", "500", "1000", "5000", "10000"];
-
-  @override
-  Widget build(BuildContext context) {
-    return Wrap(
-        spacing: 10,
-        runSpacing: 10,
-        children: _amounts
-            .map(
-              (amount) => _AmountChip(
-                amount: amount,
-                onPressed: () => onSelected(amount),
-              ),
-            )
-            .toList());
-  }
-}
-
-class _AmountChip extends StatelessWidget {
-  final String amount;
-  final Function() onPressed;
-
-  const _AmountChip({required this.amount, required this.onPressed});
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed,
-      child: Container(
-        decoration: ShapeDecoration(
-          color: Colors.white.withOpacity(.4),
-          shape: const StadiumBorder(side: BorderSide(color: Colors.white)),
-        ),
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 4,
-        ),
-        child: TextRegular(
-          "Rs. $amount",
-          color: Colors.white,
-          bold: true,
-        ),
-      ),
-    );
   }
 }

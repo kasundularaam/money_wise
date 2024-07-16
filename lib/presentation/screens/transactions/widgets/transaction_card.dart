@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:money_wise/core/extensions/dartz_x.dart';
 import 'package:money_wise/domain/transaction/transaction.dart';
 import 'package:money_wise/domain/user/user.dart';
+import 'package:money_wise/presentation/widgets/light_box.dart';
 import 'package:money_wise/presentation/widgets/profile_avatar.dart';
 import 'package:money_wise/presentation/widgets/space.dart';
 import 'package:money_wise/presentation/widgets/text.dart';
@@ -54,15 +55,7 @@ class TransactionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      decoration: ShapeDecoration(
-        color: Colors.white.withOpacity(.4),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(14),
-          side: const BorderSide(color: Colors.white),
-        ),
-      ),
+    return LightBox(
       child: Column(
         children: [
           Row(

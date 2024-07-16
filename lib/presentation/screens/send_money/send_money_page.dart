@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -6,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:money_wise/application/load_favorites/load_favorites_cubit.dart';
 import 'package:money_wise/injection.dart';
 import 'package:money_wise/presentation/router/app_router.dart';
-import 'package:money_wise/presentation/screens/send_money/widgets/favorite_card.dart';
+import 'package:money_wise/presentation/widgets/favorite_card.dart';
 import 'package:money_wise/presentation/widgets/big_action_card.dart';
 import 'package:money_wise/presentation/widgets/space.dart';
 import 'package:money_wise/presentation/widgets/text.dart';
@@ -74,7 +73,8 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                     image: "assets/images/backgrounds/send-money.png",
                     height: 160,
                     width: MediaQuery.sizeOf(context).width,
-                    onPressed: () {}),
+                    onPressed: () =>
+                        context.router.push(const NewBankTransferRoute())),
               ),
             ),
             Expanded(
