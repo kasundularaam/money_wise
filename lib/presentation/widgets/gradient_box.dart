@@ -12,7 +12,7 @@ class GradientBox extends StatelessWidget {
     return Container(
         padding: padding,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(20),
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,

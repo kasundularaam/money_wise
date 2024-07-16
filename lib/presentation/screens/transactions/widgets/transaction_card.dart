@@ -12,13 +12,11 @@ import 'package:money_wise/presentation/widgets/text.dart';
 class TransactionCard extends StatelessWidget {
   final Transaction transaction;
   final User user;
-  final bool isLast;
 
   const TransactionCard({
     super.key,
     required this.transaction,
     required this.user,
-    required this.isLast,
   });
 
   String get leftImage {
@@ -58,7 +56,6 @@ class TransactionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      margin: EdgeInsets.only(left: 10, right: 10, bottom: isLast ? 0 : 10),
       decoration: ShapeDecoration(
         color: Colors.white.withOpacity(.4),
         shape: RoundedRectangleBorder(

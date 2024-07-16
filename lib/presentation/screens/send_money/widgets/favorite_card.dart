@@ -1,15 +1,22 @@
-import 'package:auto_route/auto_route.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:money_wise/domain/user/user.dart';
-import 'package:money_wise/presentation/router/app_router.dart';
 import 'package:money_wise/presentation/widgets/profile_avatar.dart';
 import 'package:money_wise/presentation/widgets/space.dart';
 import 'package:money_wise/presentation/widgets/text.dart';
 
 class FavoriteCard extends StatelessWidget {
   final User favoriteUser;
+  final Function()? onPressed;
+  final double? radius;
 
-  const FavoriteCard({super.key, required this.favoriteUser});
+  const FavoriteCard({
+    super.key,
+    required this.favoriteUser,
+    this.onPressed,
+    this.radius,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +24,7 @@ class FavoriteCard extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: () =>
-            context.router.push(SendFavoriteRoute(favoriteUser: favoriteUser)),
+        onTap: onPressed,
         borderRadius: BorderRadius.circular(12),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),

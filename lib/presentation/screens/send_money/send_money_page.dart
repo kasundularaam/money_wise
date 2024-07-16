@@ -1,9 +1,11 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:money_wise/application/load_favorites/load_favorites_cubit.dart';
 import 'package:money_wise/injection.dart';
+import 'package:money_wise/presentation/router/app_router.dart';
 import 'package:money_wise/presentation/screens/send_money/widgets/favorite_card.dart';
 import 'package:money_wise/presentation/widgets/big_action_card.dart';
 import 'package:money_wise/presentation/widgets/space.dart';
@@ -93,7 +95,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                   ),
                   child: Column(
                     children: [
-                      const VGap(gap: 20),
+                      const VGap(gap: 10),
                       TextMedium("Favorites",
                           color: theme.primaryColorLight, thin: true),
                       const VGap(gap: 20),
@@ -102,21 +104,28 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                             BlocBuilder<LoadFavoritesCubit, LoadFavoritesState>(
                           builder: (context, state) {
                             return state.maybeWhen(
-                                loading: () => const Center(
-                                    child: CircularProgressIndicator()),
-                                loaded: (favorites) => ListView.builder(
-                                    controller: _scrollController,
-                                    itemCount: favorites.length,
-                                    itemBuilder: (context, index) => Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 10, right: 10, bottom: 10),
-                                          child: FavoriteCard(
-                                              favoriteUser: favorites[index]),
-                                        )),
-                                orElse: () => const TextRegular(
-                                      "Your favorites will appear here...",
-                                      color: Colors.white,
-                                    ));
+                              loading: () => const Center(
+                                  child: CircularProgressIndicator()),
+                              loaded: (favorites) => ListView.builder(
+                                controller: _scrollController,
+                                itemCount: favorites.length,
+                                itemBuilder: (context, index) => Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10, right: 10, bottom: 10),
+                                  child: FavoriteCard(
+                                    favoriteUser: favorites[index],
+                                    onPressed: () => context.router.push(
+                                      SendFavoriteRoute(
+                                          favoriteUser: favorites[index]),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              orElse: () => const TextRegular(
+                                "Your favorites will appear here...",
+                                color: Colors.white,
+                              ),
+                            );
                           },
                         ),
                       )

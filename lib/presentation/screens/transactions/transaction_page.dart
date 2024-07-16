@@ -67,8 +67,15 @@ class _TransactionsPageState extends State<TransactionsPage> {
                     controller: _scrollController,
                     itemCount: dayTransactions.length,
                     itemBuilder: (context, index) {
-                      return DayTransactionsCard(
-                        dayTransactions: dayTransactions[index],
+                      return Padding(
+                        padding: EdgeInsets.only(
+                            left: 10,
+                            right: 10,
+                            bottom: 10,
+                            top: index == 0 ? 10 : 0),
+                        child: DayTransactionsCard(
+                          dayTransactions: dayTransactions[index],
+                        ),
                       );
                     },
                   ),

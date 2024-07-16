@@ -7,20 +7,18 @@ import 'package:money_wise/presentation/widgets/text.dart';
 class GradientCard extends StatelessWidget {
   final String title;
   final Widget child;
-  final EdgeInsets padding;
 
   const GradientCard({
     super.key,
     required this.title,
     required this.child,
-    this.padding = const EdgeInsets.all(20),
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return GradientBox(
-      padding: padding,
+      padding: const EdgeInsets.all(10),
       child: Column(
         children: [
           TextMedium(

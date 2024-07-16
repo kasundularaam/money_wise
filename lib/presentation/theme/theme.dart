@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 ThemeData lightTheme = ThemeData.light().copyWith(
@@ -20,5 +21,31 @@ ThemeData lightTheme = ThemeData.light().copyWith(
       fontSize: 22,
       fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.bold).fontFamily,
     ),
+  ),
+  inputDecorationTheme: InputDecorationTheme(
+    prefixStyle: TextStyle(
+        color: Colors.white,
+        fontSize: 14,
+        fontFamily:
+            GoogleFonts.poppins(fontWeight: FontWeight.bold).fontFamily),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12),
+      borderSide: const BorderSide(color: Colors.white),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12),
+      borderSide: const BorderSide(color: Colors.white),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12),
+      borderSide: const BorderSide(color: Colors.white),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12),
+      borderSide: const BorderSide(color: Colors.red),
+    ),
+    filled: true,
+    fillColor: Colors.white.withOpacity(.4),
+    focusColor: Colors.white.withOpacity(.4),
   ),
 );
