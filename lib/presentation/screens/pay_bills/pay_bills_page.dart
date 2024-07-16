@@ -3,13 +3,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:money_wise/application/calendar/calendar_cubit.dart';
 
 import 'package:money_wise/application/load_brands/load_brands_cubit.dart';
-import 'package:money_wise/domain/brand/brand.dart';
 import 'package:money_wise/injection.dart';
 import 'package:money_wise/presentation/router/app_router.dart';
-import 'package:money_wise/presentation/widgets/light_box.dart';
-import 'package:money_wise/presentation/widgets/profile_avatar.dart';
+import 'package:money_wise/presentation/screens/pay_bills/widgets/calender.dart';
+import 'package:money_wise/presentation/screens/pay_bills/widgets/brand_card.dart';
 import 'package:money_wise/presentation/widgets/space.dart';
 import 'package:money_wise/presentation/widgets/text.dart';
 
@@ -22,8 +22,13 @@ class PayBillsPage extends StatefulWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<LoadBrandsCubit>()..loadBrands(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<LoadBrandsCubit>(
+            create: (context) => getIt<LoadBrandsCubit>()..loadBrands()),
+        BlocProvider<CalendarCubit>(
+            create: (context) => getIt<CalendarCubit>()..loadCalenderItems())
+      ],
       child: this,
     );
   }
@@ -32,6 +37,9 @@ class PayBillsPage extends StatefulWidget implements AutoRouteWrapper {
 class _PayBillsPageState extends State<PayBillsPage> {
   final ScrollController _scrollController = ScrollController();
   bool _isVisible = true;
+
+  final GlobalKey _gridKey = GlobalKey();
+  double _gridHeight = 0.0;
 
   @override
   void initState() {
@@ -72,11 +80,28 @@ class _PayBillsPageState extends State<PayBillsPage> {
       ),
       body: Column(
         children: [
-          AnimatedContainer(
-              height: _isVisible ? 200 : 0,
-              width: MediaQuery.of(context).size.width,
-              color: Colors.red,
-              duration: const Duration(milliseconds: 300)),
+          LayoutBuilder(builder: (context, constrains) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              final keyContext = _gridKey.currentContext;
+              if (keyContext != null) {
+                final box = keyContext.findRenderObject() as RenderBox;
+                setState(() {
+                  _gridHeight = box.size.height + 46;
+                });
+              }
+            });
+            return AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              height: _isVisible ? _gridHeight : 0,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Calender(
+                  key: _gridKey,
+                ),
+              ),
+            );
+          }),
+          const VGap(gap: 10),
           Expanded(
             child: Container(
               decoration: BoxDecoration(
@@ -129,53 +154,6 @@ class _PayBillsPageState extends State<PayBillsPage> {
             ),
           )
         ],
-      ),
-    );
-  }
-}
-
-class BrandCard extends StatelessWidget {
-  final Brand brand;
-  final Function()? onPressed;
-
-  const BrandCard({
-    super.key,
-    required this.brand,
-    this.onPressed,
-  });
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: onPressed,
-          borderRadius: BorderRadius.circular(12),
-          child: LightBox(
-              child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  ProfileAvatar(imageUrl: brand.logo, radius: 30),
-                  const HGap(gap: 10),
-                  TextMedium(
-                    brand.name,
-                    color: Colors.white,
-                    bold: true,
-                  )
-                ],
-              ),
-              const Divider(color: Colors.white),
-              TextRegular(
-                brand.description,
-                color: Colors.white,
-                thin: true,
-              ),
-            ],
-          )),
-        ),
       ),
     );
   }

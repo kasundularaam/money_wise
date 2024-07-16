@@ -12,9 +12,9 @@ class ProcessBillPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Process Bill"),
+        title: const Text("Process Bill"),
       ),
-      body: Center(
+      body: const Center(
         child: Text("Process Bill Page"),
       ),
     );
