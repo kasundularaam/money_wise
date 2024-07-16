@@ -1,13 +1,19 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:money_wise/domain/brand/brand.dart';
 
 @RoutePage()
 class ProcessBillPage extends StatelessWidget {
-  const ProcessBillPage({super.key});
+  final Brand brand;
+
+  const ProcessBillPage({super.key, required this.brand});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Process Bill"),
+      ),
       body: Center(
         child: Text("Process Bill Page"),
       ),

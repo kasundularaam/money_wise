@@ -50,13 +50,17 @@ abstract class _$AppRouter extends RootStackRouter {
     PayBillsRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const PayBillsPage(),
+        child: WrappedRoute(child: const PayBillsPage()),
       );
     },
     ProcessBillRoute.name: (routeData) {
+      final args = routeData.argsAs<ProcessBillRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const ProcessBillPage(),
+        child: ProcessBillPage(
+          key: args.key,
+          brand: args.brand,
+        ),
       );
     },
     SendFavoriteRoute.name: (routeData) {
@@ -184,16 +188,40 @@ class PayBillsRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [ProcessBillPage]
-class ProcessBillRoute extends PageRouteInfo<void> {
-  const ProcessBillRoute({List<PageRouteInfo>? children})
-      : super(
+class ProcessBillRoute extends PageRouteInfo<ProcessBillRouteArgs> {
+  ProcessBillRoute({
+    Key? key,
+    required Brand brand,
+    List<PageRouteInfo>? children,
+  }) : super(
           ProcessBillRoute.name,
+          args: ProcessBillRouteArgs(
+            key: key,
+            brand: brand,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'ProcessBillRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<ProcessBillRouteArgs> page =
+      PageInfo<ProcessBillRouteArgs>(name);
+}
+
+class ProcessBillRouteArgs {
+  const ProcessBillRouteArgs({
+    this.key,
+    required this.brand,
+  });
+
+  final Key? key;
+
+  final Brand brand;
+
+  @override
+  String toString() {
+    return 'ProcessBillRouteArgs{key: $key, brand: $brand}';
+  }
 }
 
 /// generated route for

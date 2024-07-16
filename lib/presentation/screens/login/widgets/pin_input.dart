@@ -47,18 +47,9 @@ class _PinInputState extends State<PinInput> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: List.generate(4, (index) {
-        return Container(
+        return SizedBox(
           width: 50,
           height: 60,
-          decoration: ShapeDecoration(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-              side: const BorderSide(
-                color: Colors.white,
-              ),
-            ),
-            color: Colors.white.withOpacity(0.4),
-          ),
           child: TextField(
             controller: _controllers[index],
             focusNode: _focusNodes[index],

@@ -158,7 +158,17 @@ class SuggestedItem extends StatelessWidget {
                 horizontal: 20,
                 vertical: 12,
               ),
-              child: TextRegular(value, color: theme.primaryColorDark)),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.account_balance,
+                    color: theme.primaryColorDark,
+                    size: 16,
+                  ),
+                  const HGap(gap: 10),
+                  TextRegular(value, color: theme.primaryColorDark),
+                ],
+              )),
         ),
         Divider(
           color: theme.primaryColorDark,
