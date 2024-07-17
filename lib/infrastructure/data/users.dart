@@ -12,7 +12,7 @@ class Users {
   final List<User> favorites;
   final User currentUser;
   final StreamController<bool> _authStreamController = StreamController()
-    ..add(true);
+    ..add(false);
   static const _pin = "1234";
 
   Users(
