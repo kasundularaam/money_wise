@@ -9,6 +9,7 @@ class TextInputField extends StatelessWidget {
   final Widget? prefix;
   final TextInputType? keyboardType;
   final FocusNode? focusNode;
+  final int? maxLines;
 
   const TextInputField({
     super.key,
@@ -17,6 +18,7 @@ class TextInputField extends StatelessWidget {
     this.prefix,
     this.keyboardType,
     this.focusNode,
+    this.maxLines,
   });
   @override
   Widget build(BuildContext context) {
@@ -30,6 +32,7 @@ class TextInputField extends StatelessWidget {
       inputFormatters: inputFormatters,
       keyboardType: keyboardType,
       focusNode: focusNode,
+      maxLines: maxLines,
     );
   }
 }
