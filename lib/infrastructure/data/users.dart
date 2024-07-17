@@ -145,4 +145,9 @@ class Users {
   void dispose() {
     _authStreamController.close();
   }
+
+  Future<void> signOut() async {
+    await Future.delayed(const Duration(seconds: 2));
+    _authStreamController.add(false);
+  }
 }

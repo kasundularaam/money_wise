@@ -26,6 +26,9 @@ class UserRepo implements IUserRepo {
   Stream<bool> get watchIsAuthenticated => _users.watchIsAuthenticated;
 
   @override
+  Future<void> signOut() => _users.signOut();
+
+  @override
   void dispose() {
     _users.dispose();
   }

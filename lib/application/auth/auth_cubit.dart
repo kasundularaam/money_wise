@@ -38,6 +38,11 @@ class AuthCubit extends Cubit<AuthState> {
     });
   }
 
+  Future<void> signOut() async {
+    emit(state.copyWith(isLoading: true));
+    await _userRepo.signOut();
+  }
+
   @override
   Future<void> close() {
     _userRepo.dispose();

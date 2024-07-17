@@ -9,5 +9,6 @@ abstract class IUserRepo {
   Future<Either<Failure, Unit>> logIn(String pin);
   Stream<bool> get watchIsAuthenticated;
   User get currentUser;
+  Future<void> signOut();
   void dispose();
 }

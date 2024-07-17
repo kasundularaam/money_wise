@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:money_wise/application/auth/auth_cubit.dart';
 import 'package:money_wise/domain/user/user.dart';
 import 'package:money_wise/presentation/screens/home/widgets/profile_action.dart';
 import 'package:money_wise/presentation/widgets/button.dart';
@@ -92,19 +94,22 @@ class ProfileDialog extends StatelessWidget {
                           isFirst: true,
                           onPressed: () {},
                         ),
-                        const Divider(color: Colors.white, thickness: 1, height: 0),
+                        const Divider(
+                            color: Colors.white, thickness: 1, height: 0),
                         ProfileAction(
                           text: "Report",
                           icon: Icons.report_rounded,
                           onPressed: () {},
                         ),
-                        const Divider(color: Colors.white, thickness: 1, height: 0),
+                        const Divider(
+                            color: Colors.white, thickness: 1, height: 0),
                         ProfileAction(
                           text: "Rate Us",
                           icon: Icons.star_rate_rounded,
                           onPressed: () {},
                         ),
-                        const Divider(color: Colors.white, thickness: 1, height: 0),
+                        const Divider(
+                            color: Colors.white, thickness: 1, height: 0),
                         ProfileAction(
                           text: "About Us",
                           icon: Icons.info_rounded,
@@ -119,7 +124,16 @@ class ProfileDialog extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(10),
-              child: GlassButton(text: "Logout", onPressed: () {}),
+              child: BlocBuilder<AuthCubit, AuthState>(
+                builder: (context, state) {
+                  if (state.isLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  return GlassButton(
+                      text: "Logout",
+                      onPressed: () => context.read<AuthCubit>().signOut());
+                },
+              ),
             )
           ],
         ),
