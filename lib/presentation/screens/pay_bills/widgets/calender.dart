@@ -1,13 +1,17 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:money_wise/application/calendar/calendar_cubit.dart';
 import 'package:money_wise/domain/calendar_item/calendar_item.dart';
 import 'package:money_wise/presentation/widgets/gradient_card.dart';
 import 'package:money_wise/presentation/widgets/text.dart';
 
 class Calender extends StatelessWidget {
+  final GlobalKey gridKey;
   const Calender({
     super.key,
+    required this.gridKey,
   });
 
   @override
@@ -17,7 +21,7 @@ class Calender extends StatelessWidget {
         return GradientCard(
           title: state.currentMonth,
           child: GridView.count(
-            key: key,
+            key: gridKey,
             shrinkWrap: true,
             crossAxisCount: 7,
             children: state.calenderItems

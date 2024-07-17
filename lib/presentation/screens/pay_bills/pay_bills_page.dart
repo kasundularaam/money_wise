@@ -9,7 +9,7 @@ import 'package:money_wise/application/load_brands/load_brands_cubit.dart';
 import 'package:money_wise/injection.dart';
 import 'package:money_wise/presentation/router/app_router.dart';
 import 'package:money_wise/presentation/screens/pay_bills/widgets/calender.dart';
-import 'package:money_wise/presentation/screens/pay_bills/widgets/brand_card.dart';
+import 'package:money_wise/presentation/widgets/brand_card.dart';
 import 'package:money_wise/presentation/widgets/space.dart';
 import 'package:money_wise/presentation/widgets/text.dart';
 
@@ -96,7 +96,7 @@ class _PayBillsPageState extends State<PayBillsPage> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Calender(
-                  key: _gridKey,
+                  gridKey: _gridKey,
                 ),
               ),
             );
@@ -129,23 +129,26 @@ class _PayBillsPageState extends State<PayBillsPage> {
                     child: BlocBuilder<LoadBrandsCubit, LoadBrandsState>(
                       builder: (context, state) {
                         return state.maybeWhen(
-                            loading: () => const Center(
-                                child: CircularProgressIndicator()),
-                            orElse: () => const TextRegular(
-                                  "Payable Brands will appear here..",
-                                  color: Colors.white,
-                                ),
-                            loaded: (brands) => ListView.builder(
-                                controller: _scrollController,
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
-                                itemCount: brands.length,
-                                itemBuilder: (context, index) => BrandCard(
-                                      brand: brands[index],
-                                      onPressed: () => context.router.push(
-                                          ProcessBillRoute(
-                                              brand: brands[index])),
-                                    )));
+                          loading: () =>
+                              const Center(child: CircularProgressIndicator()),
+                          orElse: () => const TextRegular(
+                            "Payable Brands will appear here..",
+                            color: Colors.white,
+                          ),
+                          loaded: (brands) => ListView.builder(
+                            controller: _scrollController,
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            itemCount: brands.length,
+                            itemBuilder: (context, index) => Padding(
+                              padding: const EdgeInsets.only(bottom: 10),
+                              child: BrandCard(
+                                brand: brands[index],
+                                onPressed: () => context.router.push(
+                                    ProcessBillRoute(brand: brands[index])),
+                              ),
+                            ),
+                          ),
+                        );
                       },
                     ),
                   )
